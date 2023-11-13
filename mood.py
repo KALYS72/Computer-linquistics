@@ -26,15 +26,16 @@ def talk(person, text):
         print(BLUE + "                 |_________|           " + RESET)
 
 # source of responces and 
-good = ["good", "hey", "hi", "nice", "cool", "okay", "hello" 
-"hello",  "hello",  "hello"]
-bad = ["meh", "bad", "hard", "tough", "blah", "ugh", "meh", "down", 
-"nah", "not good", "ugh", "worse", "off", "meh", "tomorrow", "struggling", "nope", "setbacks"]
-normal = ["okay", "normal", "regular", "usual", "fine", "meh", "typical", "standard", 
-"usual", "same old", "ordinary", "routine", "plain", "plain", "normal", "usual", "same", "routine",]
-upset = ["upset", "nerves", "bad", "hard", "irritated", "annoyed", "stressed", 
-"irritated", "not good", "tense", "frustrated", "challenged", 
-"agitated",]
+good = ["good", "hey", "hi", "nice", "cool", "okay", "hello", "greetings", "positive", "vibrant", "excellent", 
+"awesome", "fantastic", "superb", "amazing", "great", "wonderful", "pleased", "delighted", "friendly"]
+bad = ["meh", "bad", "hard", "tough", "blah", "ugh", "down", "nah", "not good", "worse", "off", "struggling", 
+"nope", "setbacks", "difficult", "challenging", "frustrating", "disappointing", "unpleasant", "discouraging"]
+normal = ["okay", "normal", "regular", "usual", "fine", "meh", "typical", "standard", "same old", "ordinary", 
+"routine", "plain", "usual", "same", "routine", "consistent", "steady", "average", "typical", "common"]
+upset = ["upset", "nerves", "irritated", "annoyed", "stressed", "tense", "frustrated", "challenged", "agitated", 
+"distressed", "displeased", "worried", "angry", "unhappy", "disheartened", "dejected", "disgruntled", "discontent", 
+"disturbed", "perturbed"]
+
 
 good_responses = [
     "I'm here for you, sending positive vibes your way. Let's focus on the good moments today.",
@@ -137,6 +138,7 @@ while a <= 3:
                 mood["not_id"] += 1
     robot_responce(mood)
     a += 1 # to get the loop until 3 times
+
 with open('answers.py', 'a') as file:
     file.write(f"{answers}\n")
 

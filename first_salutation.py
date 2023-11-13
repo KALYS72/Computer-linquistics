@@ -3,11 +3,12 @@ import random
 
 
 
-RED   = "\033[1;31m"  
-BLUE  = "\033[1;34m"
-YELLOW = '\033[33m'
-RESET = "\033[0;0m"
+
 def talk(person, text):
+    RED   = "\033[1;31m"  
+    BLUE  = "\033[1;34m"
+    YELLOW = '\033[33m'
+    RESET = "\033[0;0m"
     if person == "human":
         print("\n")
         print(RED + f"            {YELLOW + text + RESET}")
@@ -56,10 +57,10 @@ def Hello():
     ]
     random_greeting = random.randint(1, len(greetings))
     choise = greetings[random_greeting-1]
-    talk("human", input(YELLOW + 'your greeting: '+ RESET))
-    talk("robot", YELLOW + choise + RESET)
+    talk("human", input('your greeting: '))
+    talk("robot", choise)
     print('\n')
-    talk("human", YELLOW + input('your answer: ') + RESET)
+    talk("human", input('your answer: '))
     
     
 Hello()

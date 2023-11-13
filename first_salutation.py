@@ -1,39 +1,46 @@
 from datetime import datetime, timedelta
 import random
 
+
+
+RED   = "\033[1;31m"  
+BLUE  = "\033[1;34m"
+YELLOW = '\033[33m'
+RESET = "\033[0;0m"
 def talk(person, text):
     if person == "human":
         print("\n")
-        print(f"           [ {text} ]")
-        print("            /")
-        print(" ||||||||| /   ")
-        print(" | -   - |   ")
-        print(" | O   O |   ")
-        print("  \  ∆  /    ")
-        print("   \_o_/     ")
+        print(RED + f"            {YELLOW + text + RESET}")
+        print(RED + "            /         " + RESET)
+        print(RED + " ||||||||| /          " + RESET)
+        print(RED + " | -   - |            " + RESET)
+        print(RED + " | O   O |            " + RESET)
+        print(RED + "  \  ∆  /             " + RESET)
+        print(RED + "   \_o_/              " + RESET)
 
     elif person == "robot":
-        print(f"                            [ {text} ]")
-        print("                             /")
-        print("                 __________ /   ")
-        print("                 |         |   ")
-        print("                 |  ^   ^  |   ")
-        print("                 |    @    |   ")
-        print("                 |  ~~~~~  |   ")
-        print("                 |_________|     ")
+        print(BLUE + f"                             {YELLOW + text + RESET}")
+        print(BLUE + "                             /         " + RESET)
+        print(BLUE + "                 __________ /          " + RESET)
+        print(BLUE + "                 |         |           " + RESET)
+        print(BLUE + "                 |  ^   ^  |           " + RESET)
+        print(BLUE + "                 |    @    |           " + RESET)
+        print(BLUE + "                 |  ~~~~~  |           " + RESET)
+        print(BLUE + "                 |_________|           " + RESET)
         
 
 
 def Hello():
+
     hour = (datetime.utcnow() + timedelta(hours=12)).hour
     if hour >= 6 and hour <= 12:
-        hello = "Good morning"
+        hello = "Guten morgen"
     elif hour >= 13 and hour <= 18:
-        hello = "Good day"
+        hello = "Guten tag"
     elif hour >= 19 and hour <= 24:
-        hello = "Good evening"
+        hello = "Guten abend"
     elif hour >= 1 and hour <= 5:
-        hello = "Good night" 
+        hello = "Guten nacht" 
 
     greetings = [
     f"{hello}! How are you doing today? Anything exciting happening?",
@@ -49,9 +56,10 @@ def Hello():
     ]
     random_greeting = random.randint(1, len(greetings))
     choise = greetings[random_greeting-1]
-    answer = input('your greeting: ')
-    talk("human", answer)
-    talk("robot", choise)
+    talk("human", input(YELLOW + 'your greeting: '+ RESET))
+    talk("robot", YELLOW + choise + RESET)
+    print('\n')
+    talk("human", YELLOW + input('your answer: ') + RESET)
     
     
 Hello()

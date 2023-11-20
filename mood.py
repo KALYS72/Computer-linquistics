@@ -28,16 +28,15 @@ def talk(person, text):
         print(BLUE + "                 |  ~~~~~  |           " + RESET)
         print(BLUE + "                 |_________|           " + RESET)
 
-def time():
-    hour = (datetime.utcnow() + timedelta(hours=12)).hour
-    if hour >= 6 and hour <= 12:
-        return "Guten morgen"
-    elif hour >= 13 and hour <= 18:
-        return "Guten tag"
-    elif hour >= 19 and hour <= 24:
-        return "Guten abend"
-    elif hour >= 1 and hour <= 5:
-        return "Guten nacht"
+hour = (datetime.utcnow() + timedelta(hours=12)).hour
+if hour >= 6 and hour <= 12:
+    hello = "Guten morgen"
+elif hour >= 13 and hour <= 18:
+    hello = "Guten tag"
+elif hour >= 19 and hour <= 24:
+    hello = "Guten abend"
+elif hour >= 1 and hour <= 5:
+    hello = "Guten nacht"
 
 
 good = [
@@ -178,56 +177,33 @@ neutral_responses = [
 ]
 
 
-fallback_responses = [
-    "Hmm, that gives me something to ponder",
-    "Interesting, I'll keep that in mind",
-    "I see, your perspective is noted",
-    "Thanks for sharing, let's explore that further",
-    "Fascinating, I'll take that into consideration",
-    "Your input is intriguing, let's continue the conversation",
-    "I appreciate your insight, let's delve deeper",
-    "Noted, your thoughts are valued",
-    "Hmm, that's an interesting angle",
-    "Thanks for expressing that, let's move forward",
-    "I find your perspective thought-provoking",
-    "That's an interesting point, care to elaborate?",
-    "Interesting take! How do you see that impacting things?",
-    "Your thoughts add an interesting layer to the discussion",
-    "I'm intrigued! Can you share more about your viewpoint?",
-    "Your input is valued. What other thoughts do you have?",
-    "I'm curious to learn more about your perspective",
-    "Thanks for contributing. Anything else on your mind?",
-    "Your perspective is unique. What led you to that conclusion?",
-    "Let's explore this further. What brought you to this viewpoint?",
-]
 
 
 
-
-
-# identifying the biggest amount of characters
 def robot_responce(mood):
     response = random.randint(1, len(mood))
     talk("robot", mood[response-1])
     return mood[response-1]
 
 answers = []
-talk("robot", f"{time} my friend!")
+talk("robot", f"{hello} my friend!")
 a = 1
+mood = ""
 while a <= 3:
     print('\n')
     me = input("Your answer to my greeting: ")
     talk("human", me)
     me = me.lower().replace('!', '')
-    if me in good:
-        mood = positive_responses
-    elif me in bad:
-        mood = negative_responses
-    elif me in normal:
-        mood = neutral_responses
-    else:
-        mood = fallback_responses
-    answers.append({me:robot_responce(mood)})
+    if mood == "":
+        if me in good:
+            mood = positive_responses
+        elif me in bad:
+            mood = negative_responses
+        elif me in normal:
+            mood = neutral_responses
+        else:
+            mood = positive_responses
+        answers.append({me:robot_responce(mood)})
     a += 1
 
 with open('answers.py', 'a') as file:

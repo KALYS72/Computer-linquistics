@@ -1,43 +1,5 @@
 import random
-from better_profanity import profanity
-from datetime import datetime, timedelta
-
-def talk(person, text):
-    RED   = "\033[1;31m"  
-    BLUE  = "\033[1;34m"
-    YELLOW = '\033[33m'
-    RESET = "\033[0;0m"
-    if person == "human":
-        text = profanity.censor(text)
-        print("\n")
-        print(RED + f"            {YELLOW + text + RESET}")
-        print(RED + "            /         " + RESET)
-        print(RED + " ||||||||| /          " + RESET)
-        print(RED + " | -   - |            " + RESET)
-        print(RED + " | O   O |            " + RESET)
-        print(RED + "  \  ∆  /             " + RESET)
-        print(RED + "   \_o_/              " + RESET)
-
-    elif person == "robot":
-        print(BLUE + f"                             {YELLOW + text + RESET}")
-        print(BLUE + "                             /         " + RESET)
-        print(BLUE + "                 __________ /          " + RESET)
-        print(BLUE + "                 |         |           " + RESET)
-        print(BLUE + "                 |  ^   ^  |           " + RESET)
-        print(BLUE + "                 |    @    |           " + RESET)
-        print(BLUE + "                 |  ~~~~~  |           " + RESET)
-        print(BLUE + "                 |_________|           " + RESET)
-
-hour = (datetime.utcnow() + timedelta(hours=12)).hour
-if hour >= 6 and hour <= 12:
-    hello = "Guten morgen"
-elif hour >= 13 and hour <= 18:
-    hello = "Guten tag"
-elif hour >= 19 and hour <= 24:
-    hello = "Guten abend"
-elif hour >= 1 and hour <= 5:
-    hello = "Guten nacht"
-
+from functions import time, talk, record
 
 good = [
     "Feeling good",
@@ -186,7 +148,7 @@ def robot_responce(mood):
     return mood[response-1]
 
 answers = []
-talk("robot", f"{hello} my friend!")
+talk("robot", f"{time()} my friend!")
 a = 1
 mood = ""
 while a <= 3:
@@ -206,8 +168,7 @@ while a <= 3:
         answers.append({me:robot_responce(mood)})
     a += 1
 
-with open('answers.py', 'a') as file:
-    file.write(f"{answers}\n")
+record(answers)
 
 
 

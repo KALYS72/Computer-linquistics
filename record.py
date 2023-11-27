@@ -1,8 +1,6 @@
 from functions import talk, time, record_get, record_push
 
 answers = record_get()
-
-
 me = input("Say something: ")
 talk("human", me)
 me.lower()
@@ -13,6 +11,5 @@ if me in answers:
 else:
     talk("robot", time())
     answers[me] = me
-   
 
 record_push(answers)
